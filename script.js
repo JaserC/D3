@@ -3,7 +3,7 @@ let map = d3.map()
 let path = d3.geoPath()
 
 let mapUrl = 'https://d3js.org/us-10m.v1.json'
-let dataUrl = 'data/election-data.csv'
+let dataUrl = 'data/2020_US_County_Level_Presidential_Results.csv'
 
 let div = d3.select('body').append('div')
             .attr('class', 'tooltip')
