@@ -3,7 +3,7 @@ let map = d3.map()
 let path = d3.geoPath()
 
 let mapUrl = 'https://d3js.org/us-10m.v1.json'
-let dataUrl = 'data/election-data.csv'
+let dataUrl = 'data/2020_US_County_Level_Presidential_Results.csv'
 
 let div = d3.select('body').append('div')
             .attr('class', 'tooltip')
@@ -17,7 +17,7 @@ d3.queue()
     .defer(d3.json, mapUrl)
     .defer(d3.csv, dataUrl, (d) => {
         // Add data to map for mapping to topojson in the future
-      map.set(d.combined_fips, {
+      map.set(d.county_fips, {
         winPercent: d.per_gop - d.per_dem,
         countyName: d.county_name,
         votesDem: d.votes_dem,
