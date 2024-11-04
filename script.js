@@ -35,10 +35,10 @@ d3.queue()
               let red = ['#f07373', '#d15252', '#b82c2c', '#8f0303']
               if (dataPoint){
                 if (dataPoint.votesDem >= dataPoint.votesGop){
-                  return blue[Math.floor(dataPoint.per_point_diff / 0.25)]
+                  return blue[Math.floor(dataPoint.winPercent / 0.25)]
                 }
                 else{
-                  return red[Math.floor(dataPoint.per_point_diff / 0.25)]
+                  return red[Math.floor(dataPoint.winPercent / 0.25)]
                 }
               }
               return '#808080'
