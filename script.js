@@ -22,6 +22,7 @@ d3.queue()
         votesGop: d.votes_gop,
         votesTotal: d.total_votes
       })
+    })
     .defer(d3.csv, 'data/votes.csv', (d) => {
       stateMap.set(d.state_abbr, {            
         stateName: d.state,
@@ -31,7 +32,7 @@ d3.queue()
         perGop: d.trump_pct
       });
     })
-    }).await((error, us) => {
+    .await((error, us) => {
       if (error) throw Error(error)
       svg.append('g')
             .attr('class', 'counties')
