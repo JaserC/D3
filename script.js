@@ -83,8 +83,8 @@ d3.queue()
                 if (stateData) {
                   div.html(
                     `<b>State:</b> ${stateData.stateName}
-                     <br/><b>Trump:</b> ${numFormat(stateData.votesGop)}
-                     <br/><b>Biden:</b> ${numFormat(stateData.votesDem)}
+                     <br/><b>Trump:</b> ${numFormat(stateData.votesGop)}, ${numFormat(stateData.perGop)}
+                     <br/><b>Biden:</b> ${numFormat(stateData.votesDem)}, ${numFormat(stateData.perDem)}
                      <br/><b>Total:</b> ${numFormat(stateData.votesDem + stateData.votesGop)}`
                   ).style('left', (d3.event.pageX + 15) + 'px')
                    .style('top', (d3.event.pageY - 28) + 'px')
