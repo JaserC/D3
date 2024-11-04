@@ -31,8 +31,8 @@ d3.queue()
             .enter().append('path')
             .attr('fill', (d) => {
               let dataPoint = map.get(parseInt(d.id));
-              let blue = ['#7aa3f5', '#476fbf', '#2750a1', '#012c80'];
-              let red = ['#f07373', '#d15252', '#b82c2c', '#8f0303'];
+              let blue = ['#b0cbff', '#5d7fc2', '#2750a1', '#002369'];
+              let red = ['#fcb3b3', '#d66b6b', '#b82c2c', '#7d0101'];
               if (dataPoint) {
                 let index = Math.floor(Math.abs(dataPoint.winPercent) / 0.25);
                 index = Math.min(index, 3); 
