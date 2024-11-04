@@ -1,5 +1,6 @@
 let svg = d3.select('svg')
 let map = d3.map()
+let stateMap = d3.map()
 let path = d3.geoPath()
 
 let mapUrl = 'https://d3js.org/us-10m.v1.json'
