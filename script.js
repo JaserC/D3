@@ -77,5 +77,5 @@ d3.queue()
          .attr('d', path)
          .attr('fill', 'none')
          .attr('stroke', '#FFFFFF')  
-         .attr('stroke-width', 4.0); 
+         .attr('stroke-width', 4.5); 
     });
