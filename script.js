@@ -3,7 +3,6 @@ let map = d3.map()
 let path = d3.geoPath()
 
 let mapUrl = 'https://d3js.org/us-10m.v1.json'
-let dataUrl = 'data/election-data.csv'
 
 let div = d3.select('body').append('div')
             .attr('class', 'tooltip')
@@ -14,14 +13,24 @@ function numFormat (num) {
 
 d3.queue()
     .defer(d3.json, mapUrl)
-    .defer(d3.csv, dataUrl, (d) => {
+    .defer(d3.csv, 'data/election-data.csv', (d) => {
       map.set(d.county_fips, {
+        stateName: d.state_name,
         winPercent: d.per_point_diff,
         countyName: d.county_name,
         votesDem: d.votes_dem,
         votesGop: d.votes_gop,
         votesTotal: d.total_votes
       })
+    .defer(d3.csv, 'data/votes.csv', (d) => {
+      stateMap.set(d.state_abbr, {            
+        stateName: d.state,
+        votesDem: d.biden_vote,
+        perDem: d.biden_pct,
+        votesGop: d.trump_vote, 
+        perGop: d.trump_pct
+      });
+    })
     }).await((error, us) => {
       if (error) throw Error(error)
       svg.append('g')
@@ -66,6 +75,22 @@ d3.queue()
                     .style('left', (d3.event.pageX + 15) + 'px')
                     .style('top', (d3.event.pageY - 28) + 'px')
             })
+            .on('click', (d) => {
+              let dataPoint = map.get(parseInt(d.id));
+              if (dataPoint) {
+                let stateData = stateMap.get(dataPoint.stateName);
+                if (stateData) {
+                  div.html(
+                    `<b>State:</b> ${stateData.stateName}
+                     <br/><b>Trump:</b> ${numFormat(stateData.votesGop)}
+                     <br/><b>Biden:</b> ${numFormat(stateData.votesDem)}
+                     <br/><b>Total:</b> ${numFormat(stateData.votesDem + stateData.votesGop)}`
+                  ).style('left', (d3.event.pageX + 15) + 'px')
+                   .style('top', (d3.event.pageY - 28) + 'px')
+                   .style('opacity', 0.9);
+                }
+              }
+            });
 
     svg.append('path')
          .datum(topojson.mesh(us, us.objects.counties, (a, b) => a !== b))
