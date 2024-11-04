@@ -9,16 +9,14 @@ let div = d3.select('body').append('div')
             .attr('class', 'tooltip')
 
 function numFormat (num) {
-    // Round and add comma to numbers for display
   return (+num).toLocaleString()
 }
 
 d3.queue()
     .defer(d3.json, mapUrl)
     .defer(d3.csv, dataUrl, (d) => {
-        // Add data to map for mapping to topojson in the future
       map.set(d.county_fips, {
-        winPercent: d.per_gop - d.per_dem,
+        winPercent: d.per_point_diff,
         countyName: d.county_name,
         votesDem: d.votes_dem,
         votesGop: d.votes_gop,
@@ -33,17 +31,20 @@ d3.queue()
             .enter().append('path')
             .attr('fill', (d) => {
               let dataPoint = map.get(parseInt(d.id))
-              dataPoint = dataPoint ? dataPoint.winPercent : 0.05
-
-                // Base county colors on win % per county
-              if (dataPoint >= 0.05) return '#f44336'
-              if (dataPoint > 0) return '#ef9a9a'
-              if (dataPoint >= -0.05) return '#bbdefb'
-              return '#2196f3'
+              let blue = ['#7aa3f5', '#476fbf', '#2750a1', '#012c80']
+              let red = ['#f07373', '#d15252', '#b82c2c', '#8f0303']
+              if (dataPoint){
+                if (dataPoint.votesDem >= dataPoint.votesGop){
+                  return blue[Math.floor(dataPoint.per_point_diff / 0.25)]
+                }
+                else{
+                  return red[Math.floor(dataPoint.per_point_diff / 0.25)]
+                }
+              }
+              return '#808080'
             })
             .attr('d', path)
             .on('mouseover', (d) => {
-                // add tooltip on hover with information about the race
               d = map.get(parseInt(d.id))
               div.transition()
                     .duration(200)
@@ -62,15 +63,6 @@ d3.queue()
                     .style('top', (d3.event.pageY - 28) + 'px')
             })
 
-        // Fill in the county outlines
-    //   svg.append('path')
-    //         .datum(topojson.meshus, us.objects.states, (a, b) => {
-    //           return a !== b
-    //         })
-    //         .attr('class', 'states')
-    //         .attr('d', path)
-    // })
-
     svg.append('path')
          .datum(topojson.mesh(us, us.objects.counties, (a, b) => a !== b))
          .attr('class', 'county-borders')
@@ -79,7 +71,6 @@ d3.queue()
          .attr('stroke', '#FFFFFF')
          .attr('stroke-width', 0.2);
 
-      // Draw state outlines on top of county borders
       svg.append('path')
          .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
          .attr('class', 'state-borders')
