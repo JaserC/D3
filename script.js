@@ -23,7 +23,7 @@ d3.queue()
         votesTotal: d.total_votes
       });
     })
-    .defer(d3.csv, 'data/votes.csv', (d) => { // Import state data
+    .defer(d3.csv, 'data/voting.csv', (d) => { // Import state data
       stateMap.set(d.state, {            
         stateName: d.state,
         votesDem: d.biden_vote,
