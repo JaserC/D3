@@ -8,12 +8,6 @@ let dataUrl = 'data/election-data.csv'
 let div = d3.select('body').append('div')
             .attr('class', 'tooltip')
 
-const zoom = d3.zoom()
-  .scaleExtent([1, 8]) // Limit the zoom scale, adjust as needed
-  .on("zoom", (event) => {
-      g.attr("transform", event.transform); // Apply zoom transformation to the map group
-});
-
 function numFormat (num) {
     // Round and add comma to numbers for display
   return (+num).toLocaleString()
@@ -92,5 +86,5 @@ d3.queue()
          .attr('d', path)
          .attr('fill', 'none')
          .attr('stroke', '#FFFFFF')  
-         .attr('stroke-width', 4);
+         .attr('stroke-width', 4.0); 
     });
