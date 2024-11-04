@@ -30,18 +30,22 @@ d3.queue()
             .data(topojson.feature(us, us.objects.counties).features)
             .enter().append('path')
             .attr('fill', (d) => {
-              let dataPoint = map.get(parseInt(d.id))
-              let blue = ['#7aa3f5', '#476fbf', '#2750a1', '#012c80']
-              let red = ['#f07373', '#d15252', '#b82c2c', '#8f0303']
-              if (dataPoint){
-                if (dataPoint.votesDem >= dataPoint.votesGop){
-                  return blue[Math.floor(dataPoint.winPercent / 0.25)]
-                }
-                else{
-                  return red[Math.floor(dataPoint.winPercent / 0.25)]
+              let dataPoint = map.get(parseInt(d.id));
+              let blue = ['#7aa3f5', '#476fbf', '#2750a1', '#012c80'];
+              let red = ['#f07373', '#d15252', '#b82c2c', '#8f0303'];
+              if (dataPoint) {
+                let index = Math.floor(Math.abs(dataPoint.winPercent) / 0.25);
+                index = Math.min(index, 3);
+            
+                if (dataPoint.votesDem >= dataPoint.votesGop) {
+                  return blue[index];
+                } else {
+                  return red[index];
                 }
               }
-              return '#808080'
+              return '#808080';
+
+              
             })
             .attr('d', path)
             .on('mouseover', (d) => {
