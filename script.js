@@ -63,28 +63,28 @@ d3.queue()
             })
 
         // Fill in the county outlines
-      svg.append('path')
-            .datum(topojson.meshus, us.objects.states, (a, b) => {
-              return a !== b
-            })
-            .attr('class', 'states')
-            .attr('d', path)
-    })
-
-    // svg.append('path')
-    //      .datum(topojson.mesh(us, us.objects.counties, (a, b) => a !== b))
-    //      .attr('class', 'county-borders')
-    //      .attr('d', path)
-    //      .attr('fill', 'none')
-    //      .attr('stroke', '#fff')
-    //      .attr('stroke-width', 0.5);
-
-    //   // Draw state outlines on top of county borders
     //   svg.append('path')
-    //      .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
-    //      .attr('class', 'state-borders')
-    //      .attr('d', path)
-    //      .attr('fill', 'none')
-    //      .attr('stroke', '#000')  // Black or any preferred color for state borders
-    //      .attr('stroke-width', 1.5); // Thicker stroke for state borders
-    // });
+    //         .datum(topojson.meshus, us.objects.states, (a, b) => {
+    //           return a !== b
+    //         })
+    //         .attr('class', 'states')
+    //         .attr('d', path)
+    // })
+
+    svg.append('path')
+         .datum(topojson.mesh(us, us.objects.counties, (a, b) => a !== b))
+         .attr('class', 'county-borders')
+         .attr('d', path)
+         .attr('fill', 'none')
+         .attr('stroke', '#fff')
+         .attr('stroke-width', 0.5);
+
+      // Draw state outlines on top of county borders
+      svg.append('path')
+         .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
+         .attr('class', 'state-borders')
+         .attr('d', path)
+         .attr('fill', 'none')
+         .attr('stroke', '#000')  // Black or any preferred color for state borders
+         .attr('stroke-width', 1.5); // Thicker stroke for state borders
+    });
