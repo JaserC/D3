@@ -21,7 +21,7 @@ d3.queue()
         votesDem: d.votes_dem,
         votesGop: d.votes_gop,
         votesTotal: d.total_votes
-      })
+      });
     })
     .defer(d3.csv, 'data/votes.csv', (d) => { // Import state data
       stateMap.set(d.state, {            
