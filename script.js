@@ -35,12 +35,12 @@ d3.queue()
               let red = ['#f07373', '#d15252', '#b82c2c', '#8f0303'];
               if (dataPoint) {
                 let index = Math.floor(Math.abs(dataPoint.winPercent) / 0.25);
-                index = Math.min(index, 3);
+                index = Math.min(index, 3); 
             
-                if (dataPoint.votesDem >= dataPoint.votesGop) {
-                  return blue[index];
-                } else {
+                if (dataPoint.winPercent >= 0) {
                   return red[index];
+                } else {
+                  return blue[index];
                 }
               }
               return '#808080';
