@@ -24,8 +24,8 @@ h1 {
 div.tooltip {
     position: absolute;
     text-align: center;
-    width: 150px;
-    height: 70px;
+    width: 250px;
+    height: 120px;
     padding: 2px;
     font-size: 12px;
     background: white;
