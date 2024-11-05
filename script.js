@@ -66,7 +66,8 @@ d3.queue()
                     .style('opacity', 0.9)
 
               div.html(
-                        `<b>County:</b> ${d.countyName}
+                        `<b>${d.countyName}, ${d.stateName}</b> 
+                        <span>${d.votesGop < d.votesDem ? "Joe Biden": "Donald Trump"}</span>
                         <br/>
                         <b>Trump:</b> ${numFormat(d.votesGop)}
                         <br/>
