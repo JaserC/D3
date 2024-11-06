@@ -20,7 +20,9 @@ d3.queue()
         winPercent: d.per_point_diff,
         countyName: d.county_name,
         votesDem: d.votes_dem,
+        perDem: d.per_dem,
         votesGop: d.votes_gop,
+        perGop: d.per_gop,
         votesTotal: d.total_votes
       });
     })
@@ -92,13 +94,13 @@ d3.queue()
                         <tr>
                           <td>🔵 Joe Biden</td>
                           <td>${d.votesDem}</td>
-                          <td>16</td>
+                          <td>${d.perDem}</td>
                           <td rowspan="4">${Math.floor(Math.abs(d.winPercent) * 100)}</td>
                         </tr>
                         <tr>
                           <td>🔴 Donald Trump</td>
                           <td>${d.votesGop}</td>
-                          <td>10</td>
+                          <td>${d.perGop}</td>
                         </tr>
                       </table>`
                   )

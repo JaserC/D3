@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,600,700,900');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 .counties :hover {
     opacity: 0.2;
 }
@@ -38,4 +40,31 @@ div.tooltip {
 html {
     text-align: center;
     font-family: 'Roboto', sans-serif;
+}
+
+
+.intro{
+    text-align: left;
+    width: 350px;
+    height: 250px;
+
+    background: rgba(0,0,0,0.9);
+    border-radius: 20px;
+}
+.intro h1{
+    margin-left: 25px;
+    padding-top: 15px;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 27px;
+    font-weight: 800;
+}
+.intro li{
+    text-align: left;
+    line-height: 17px;
+    color: white;
+    font-size: 12px;
+    font-family: 'Roboto';
+    font-weight: 600;
+    margin: 8px 20px 0px 0px;
 }
