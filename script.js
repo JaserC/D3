@@ -81,23 +81,22 @@ d3.queue()
                 div.html(
                       `<table>
                         <tr>
-                          <th colspan="4" style="text-align:left">${d.countyName}, ${d.stateName}</th>
-                          <th colspan="2" style="text-align:right">${d.votesGop > d.votesDem ? "Donald Trump" : "Joe Biden"}</th>
+                          <th colspan="4" style="text-align:left;">${d.countyName}, ${d.stateName}</th>
                         </tr>
-                        <tr>
+                        <tr style="border-bottom: 1px solid #ddd;">
                           <td>Candidate</td>
                           <td>Vote</td>
                           <td>Pct</td>
                           <td>Margin</td>
                         </tr>
                         <tr>
-                          <td>Joe Biden</td>
+                          <td>🔵 Joe Biden</td>
                           <td>${d.votesDem}</td>
                           <td>16</td>
                           <td rowspan="4">${Math.floor(Math.abs(d.winPercent) * 100)}</td>
                         </tr>
                         <tr>
-                          <td>Donald Trump</td>
+                          <td>🔴 Donald Trump</td>
                           <td>${d.votesGop}</td>
                           <td>10</td>
                         </tr>
